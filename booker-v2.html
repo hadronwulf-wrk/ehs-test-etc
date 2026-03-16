@@ -26,17 +26,13 @@ input:focus, select:focus, textarea:focus {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Background gradient ── */
 .bg-grad {
   position: fixed; top: 0; left: 0; right: 0; height: 320px;
   background: linear-gradient(135deg, #0B4F6C 0%, #14919B 60%, #0AD3B5 100%);
   z-index: 0;
 }
 
-/* ── Header ── */
-header {
-  position: relative; z-index: 10; padding: 16px 24px;
-}
+header { position: relative; z-index: 10; padding: 16px 24px; }
 .header-inner {
   max-width: 880px; margin: 0 auto;
   display: flex; justify-content: space-between; align-items: center;
@@ -58,13 +54,11 @@ header {
 }
 .header-phone:hover { background: rgba(255,255,255,.25); }
 
-/* ── Main ── */
 main {
   position: relative; z-index: 10;
   max-width: 880px; margin: 0 auto; padding: 0 24px 40px;
 }
 
-/* ── Step Indicator ── */
 .step-bar { margin: 20px 0 24px; animation: fadeUp .5s ease both; }
 .step-track { display: flex; align-items: center; justify-content: center; }
 .step-item  { display: flex; align-items: center; gap: 8px; }
@@ -89,20 +83,17 @@ main {
 }
 .step-connector.complete { background: #0AD3B5; }
 
-/* ── Card ── */
 .card {
   background: #fff; border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.04);
   overflow: hidden; animation: fadeUp .45s ease both; animation-delay: .1s;
 }
 
-/* ── Step Content ── */
 .step-content { padding: 32px 36px 12px; }
 .step-header  { margin-bottom: 28px; }
 .step-title   { font-size: 22px; font-weight: 700; letter-spacing: -0.03em; color: #0F172A; margin-bottom: 6px; }
 .step-subtitle{ font-size: 14.5px; color: #64748B; line-height: 1.5; }
 
-/* ── Form Fields ── */
 .field-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
 .field-label {
   font-size: 12.5px; font-weight: 600; color: #475569;
@@ -121,13 +112,10 @@ main {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 14px center;
 }
-.field-textarea {
-  height: auto; padding: 12px 14px; resize: vertical; line-height: 1.5;
-}
+.field-textarea { height: auto; padding: 12px 14px; resize: vertical; line-height: 1.5; }
 .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 .form-grid-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0 20px; }
 
-/* ── Vaccines ── */
 .section-label {
   display: flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 700; color: #475569;
@@ -167,7 +155,6 @@ main {
 .vaccine-price     { font-size: 14px; font-weight: 700; color: #0F172A; }
 .vaccine-price-per { font-size: 11px; font-weight: 400; color: #94A3B8; }
 
-/* ── Addons ── */
 .addon-grid { display: flex; flex-direction: column; gap: 8px; }
 .addon-card {
   display: flex; align-items: center; gap: 14px;
@@ -193,7 +180,6 @@ main {
 .addon-desc { font-size: 12px; color: #94A3B8; }
 .addon-price { font-size: 13px; font-weight: 700; color: #0F172A; margin-left: auto; white-space: nowrap; }
 
-/* ── Review ── */
 .review-section { padding: 20px 0; border-bottom: 1px solid #F1F5F9; }
 .review-section:last-of-type { border-bottom: none; }
 .review-section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
@@ -219,17 +205,14 @@ main {
   font-size: 11.5px; font-weight: 600; color: #64748B;
   font-family: 'DM Mono', monospace;
 }
-/* ── Multi-location fee notice ── */
+
 .multi-fee-notice {
   display: flex; gap: 10px; padding: 14px 16px;
   background: #FFFBEB; border: 1px solid #FDE68A;
   border-radius: 10px; margin-bottom: 18px; align-items: flex-start;
 }
-.multi-fee-notice p {
-  font-size: 13px; color: #92400E; line-height: 1.5; margin: 0;
-}
+.multi-fee-notice p { font-size: 13px; color: #92400E; line-height: 1.5; margin: 0; }
 
-/* ── Estimate Box ── */
 .estimate-box {
   background: linear-gradient(135deg, #F0F9FF 0%, #F0FDF4 100%);
   border: 1.5px solid #BAE6FD; border-radius: 14px;
@@ -241,17 +224,13 @@ main {
   text-transform: uppercase; letter-spacing: 0.04em;
   font-family: 'DM Mono', monospace;
 }
-.est-line-items {
-  border-bottom: 1px dashed #CBD5E1; padding-bottom: 12px; margin-bottom: 12px;
-}
+.est-line-items { border-bottom: 1px dashed #CBD5E1; padding-bottom: 12px; margin-bottom: 12px; }
 .est-line {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 13.5px; color: #475569; padding: 3px 0;
 }
 .est-bold { font-weight: 700; color: #1E293B; }
-.est-subtotal {
-  border-bottom: 1px dashed #CBD5E1; padding-bottom: 12px; margin-bottom: 14px;
-}
+.est-subtotal { border-bottom: 1px dashed #CBD5E1; padding-bottom: 12px; margin-bottom: 14px; }
 .est-total-row {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 14px; font-weight: 700; color: #0B4F6C;
@@ -261,10 +240,7 @@ main {
   font-size: 24px; font-weight: 700; color: #0B4F6C;
   letter-spacing: -0.03em; font-family: 'DM Sans', sans-serif;
 }
-.est-note {
-  font-size: 12px; color: #94A3B8; margin: 12px 0 0; line-height: 1.4;
-  font-style: italic;
-}
+.est-note { font-size: 12px; color: #94A3B8; margin: 12px 0 0; line-height: 1.4; font-style: italic; }
 
 .disclaimer-box {
   display: flex; gap: 12px; padding: 16px 18px;
@@ -273,7 +249,6 @@ main {
 }
 .disclaimer-text { font-size: 13px; color: #64748B; line-height: 1.55; margin: 0; }
 
-/* ── Nav Row ── */
 .nav-row { display: flex; align-items: center; padding: 18px 36px 28px; gap: 12px; }
 .nav-spacer { flex: 1; }
 .btn-back {
@@ -304,7 +279,6 @@ main {
 }
 .btn-submit:hover { filter: brightness(1.06); }
 
-/* ── Trust Bar ── */
 .trust-bar {
   display: flex; justify-content: center; align-items: center; gap: 10px;
   padding: 20px 0; font-size: 12px; color: #64748B; font-weight: 500;
@@ -313,7 +287,6 @@ main {
 .trust-item { display: flex; align-items: center; gap: 5px; }
 .trust-dot  { color: #CBD5E1; }
 
-/* ── Submitted ── */
 .submitted-wrap {
   padding: 56px 40px; display: flex; flex-direction: column;
   align-items: center; text-align: center;
@@ -340,10 +313,8 @@ main {
 }
 .btn-reset:hover { background: #E2E8F0; }
 
-/* ── Hidden util ── */
 .hidden { display: none !important; }
 
-/* ── Responsive ── */
 @media (max-width: 640px) {
   .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
   .vaccine-grid  { grid-template-columns: 1fr; }
@@ -360,7 +331,6 @@ main {
 
 <div class="bg-grad"></div>
 
-<!-- ════ HEADER ════ -->
 <header>
   <div class="header-inner">
     <div class="logo-wrap">
@@ -381,12 +351,10 @@ main {
 
 <main>
 
-<!-- ════ STEP INDICATOR ════ -->
 <div class="step-bar" id="stepBar">
   <div class="step-track" id="stepTrack"></div>
 </div>
 
-<!-- ════ CARD ════ -->
 <div class="card" id="mainCard">
 
   <!-- Step 0: Company -->
@@ -433,7 +401,7 @@ main {
     </div>
   </div>
 
-  <!-- Step 1: Event Details -->
+  <!-- Step 1: Event Details — NO special instructions here -->
   <div class="step-content hidden" id="step-1">
     <div class="step-header">
       <h2 class="step-title">Where and when?</h2>
@@ -490,7 +458,10 @@ main {
     </div>
   </div>
 
-  <!-- Step 2: Vaccines -->
+  <!-- Step 2: Vaccines — label is "Vaccines" not "Vaccines & Screenings" -->
+  <!-- COVID-19 and TB Screening removed -->
+  <!-- Biometric Screening removed from add-ons -->
+  <!-- All Included add-ons checked by default -->
   <div class="step-content hidden" id="step-2">
     <div class="step-header">
       <h2 class="step-title">Select vaccines &amp; services</h2>
@@ -501,7 +472,6 @@ main {
       <span>Vaccines</span>
     </div>
     <div class="vaccine-grid" id="vaccineGrid"></div>
-
     <div class="section-label" style="margin-top:32px">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
       <span>Add-On Services</span>
@@ -509,7 +479,7 @@ main {
     <div class="addon-grid" id="addonGrid"></div>
   </div>
 
-  <!-- Step 3: Review -->
+  <!-- Step 3: Review & Book — Special Instructions lives HERE now -->
   <div class="step-content hidden" id="step-3">
     <div class="step-header">
       <h2 class="step-title">Review your request</h2>
@@ -539,7 +509,6 @@ main {
     <button class="btn-reset" onclick="resetForm()">Submit Another Request</button>
   </div>
 
-  <!-- Nav Row -->
   <div class="nav-row" id="navRow">
     <button class="btn-back hidden" id="btnBack" onclick="prevStep()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -556,7 +525,7 @@ main {
   </div>
 </div>
 
-<!-- ════ TRUST BAR ════ -->
+<!-- Trust bar: "Licensed Clinical Staff" (was "Licensed Pharmacists") -->
 <div class="trust-bar">
   <span class="trust-item">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -577,8 +546,7 @@ main {
 </main>
 
 <script>
-/* ═══════════════════ DATA ═══════════════════ */
-const VACCINES = [
+var VACCINES = [
   { id:"flu",        name:"Influenza (Flu)", desc:"Seasonal flu protection",          price:35,  popular:true },
   { id:"hepb",       name:"Hepatitis B",     desc:"3-dose series",                    price:65,  popular:false },
   { id:"hepa",       name:"Hepatitis A",     desc:"2-dose series",                    price:75,  popular:false },
@@ -589,250 +557,161 @@ const VACCINES = [
   { id:"meningitis", name:"Meningococcal",   desc:"Meningitis A, C, W, Y",           price:145, popular:false },
 ];
 
-const ADDONS = [
+var ADDONS = [
   { id:"consent",      name:"Digital Consent Management",  desc:"E-signatures & HIPAA-compliant forms",      price:0 },
   { id:"reporting",    name:"Compliance Reporting",        desc:"Participation reports & vaccination records",price:0 },
   { id:"multilingual", name:"Multilingual Staff",          desc:"Spanish, Mandarin, and more",               price:0 },
 ];
 
-const STEPS = [
+var STEPS = [
   { label:"Company" },
   { label:"Event Details" },
   { label:"Vaccines" },
   { label:"Review & Book" },
 ];
 
-let currentStep = 0;
-const selectedVaccines = new Set();
-const selectedAddons   = new Set();
+var currentStep = 0;
+var selectedVaccines = new Set();
+var selectedAddons   = new Set();
 
-/* ═══════════════════ SVG HELPERS ═══════════════════ */
 function checkSvg(size, color) {
-  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
+  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="'+color+'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
 }
 
-/* ═══════════════════ STEP INDICATOR ═══════════════════ */
 function renderSteps() {
-  const track = document.getElementById('stepTrack');
+  var track = document.getElementById('stepTrack');
   track.innerHTML = '';
-  STEPS.forEach((s, i) => {
-    const item = document.createElement('div');
+  STEPS.forEach(function(s, i) {
+    var item = document.createElement('div');
     item.className = 'step-item';
-
-    const dot = document.createElement('div');
+    var dot = document.createElement('div');
     dot.className = 'step-dot' + (i === currentStep ? ' active' : '') + (i < currentStep ? ' complete' : '');
     dot.innerHTML = i < currentStep ? checkSvg(14, '#fff') : (i + 1);
-
-    const label = document.createElement('span');
+    var label = document.createElement('span');
     label.className = 'step-label' + (i === currentStep ? ' active' : '') + (i < currentStep ? ' complete' : '');
     label.textContent = s.label;
-
     item.appendChild(dot);
     item.appendChild(label);
-
     if (i < STEPS.length - 1) {
-      const conn = document.createElement('div');
+      var conn = document.createElement('div');
       conn.className = 'step-connector' + (i < currentStep ? ' complete' : '');
       item.appendChild(conn);
     }
-
     track.appendChild(item);
   });
 }
 
-/* ═══════════════════ VACCINE / ADDON CARDS ═══════════════════ */
 function renderVaccineCards() {
-  const grid = document.getElementById('vaccineGrid');
+  var grid = document.getElementById('vaccineGrid');
   grid.innerHTML = '';
-  VACCINES.forEach(v => {
-    const card = document.createElement('div');
-    card.className = 'vaccine-card' + (selectedVaccines.has(v.id) ? ' selected' : '');
-    card.onclick = () => { toggleVax(v.id); };
-    card.innerHTML = `
-      <div class="vaccine-card-top">
-        <div class="vaccine-info">
-          <span class="vaccine-name">${v.name}</span>
-          <span class="vaccine-desc">${v.desc}</span>
-        </div>
-        <div class="vaccine-check${selectedVaccines.has(v.id) ? ' active' : ''}">
-          ${selectedVaccines.has(v.id) ? checkSvg(13,'#fff') : ''}
-        </div>
-      </div>
-      <div class="vaccine-card-bottom">
-        ${v.popular ? '<span class="popular-badge">Popular</span>' : '<span></span>'}
-        <span class="vaccine-price">${v.price === 0 ? 'No cost' : '$' + v.price}<span class="vaccine-price-per">/person</span></span>
-      </div>
-    `;
+  VACCINES.forEach(function(v) {
+    var sel = selectedVaccines.has(v.id);
+    var card = document.createElement('div');
+    card.className = 'vaccine-card' + (sel ? ' selected' : '');
+    card.onclick = function() { toggleVax(v.id); };
+    card.innerHTML =
+      '<div class="vaccine-card-top"><div class="vaccine-info"><span class="vaccine-name">' + v.name + '</span><span class="vaccine-desc">' + v.desc + '</span></div><div class="vaccine-check' + (sel ? ' active' : '') + '">' + (sel ? checkSvg(13,'#fff') : '') + '</div></div>' +
+      '<div class="vaccine-card-bottom">' + (v.popular ? '<span class="popular-badge">Popular</span>' : '<span></span>') + '<span class="vaccine-price">' + (v.price === 0 ? 'No cost' : '$' + v.price) + '<span class="vaccine-price-per">/person</span></span></div>';
     grid.appendChild(card);
   });
 }
 
 function renderAddonCards() {
-  const grid = document.getElementById('addonGrid');
+  var grid = document.getElementById('addonGrid');
   grid.innerHTML = '';
-  ADDONS.forEach(a => {
-    const card = document.createElement('div');
-    card.className = 'addon-card' + (selectedAddons.has(a.id) ? ' selected' : '');
-    card.onclick = () => { toggleAddon(a.id); };
-    card.innerHTML = `
-      <div class="addon-check${selectedAddons.has(a.id) ? ' active' : ''}">
-        ${selectedAddons.has(a.id) ? checkSvg(11,'#fff') : ''}
-      </div>
-      <div class="addon-info">
-        <span class="addon-name">${a.name}</span>
-        <span class="addon-desc">${a.desc}</span>
-      </div>
-      <span class="addon-price">${a.price === 0 ? 'Included' : '+$' + a.price + '/person'}</span>
-    `;
+  ADDONS.forEach(function(a) {
+    var sel = selectedAddons.has(a.id);
+    var card = document.createElement('div');
+    card.className = 'addon-card' + (sel ? ' selected' : '');
+    card.onclick = function() { toggleAddon(a.id); };
+    card.innerHTML =
+      '<div class="addon-check' + (sel ? ' active' : '') + '">' + (sel ? checkSvg(11,'#fff') : '') + '</div>' +
+      '<div class="addon-info"><span class="addon-name">' + a.name + '</span><span class="addon-desc">' + a.desc + '</span></div>' +
+      '<span class="addon-price">' + (a.price === 0 ? 'Included' : '+$' + a.price + '/person') + '</span>';
     grid.appendChild(card);
   });
 }
 
 function toggleVax(id) {
   selectedVaccines.has(id) ? selectedVaccines.delete(id) : selectedVaccines.add(id);
-  renderVaccineCards();
-  updateNav();
+  renderVaccineCards(); updateNav();
 }
 function toggleAddon(id) {
   selectedAddons.has(id) ? selectedAddons.delete(id) : selectedAddons.add(id);
   renderAddonCards();
 }
 
-/* ═══════════════════ REVIEW ═══════════════════ */
 function renderReview() {
-  const c = document.getElementById('reviewContent');
-  const val = id => (document.getElementById(id)?.value || '').trim();
-  const fmtDate = d => {
-    if (!d) return '—';
-    const dt = new Date(d + 'T00:00:00');
+  var c = document.getElementById('reviewContent');
+  var val = function(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  var fmtDate = function(d) {
+    if (!d) return '\u2014';
+    var dt = new Date(d + 'T00:00:00');
     return dt.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
   };
+  var loc = [val('address'), val('city'), val('state'), val('zip')].filter(Boolean).join(', ') || '\u2014';
+  var contact = val('contactName') + (val('jobTitle') ? ', ' + val('jobTitle') : '');
 
-  const loc = [val('address'), val('city'), val('state'), val('zip')].filter(Boolean).join(', ') || '—';
-  const contact = val('contactName') + (val('jobTitle') ? ', ' + val('jobTitle') : '');
-
-  let vaxTags = '';
-  VACCINES.filter(v => selectedVaccines.has(v.id)).forEach(v => {
-    vaxTags += `<span class="review-tag">${v.name} <span class="review-tag-price">${v.price === 0 ? 'No cost' : '$' + v.price + '/person'}</span></span>`;
-  });
-  ADDONS.filter(a => selectedAddons.has(a.id)).forEach(a => {
-    vaxTags += `<span class="review-tag addon">${a.name} <span class="review-tag-price">${a.price === 0 ? 'Included' : '+$' + a.price + '/person'}</span></span>`;
-  });
+  var vaxTags = '';
+  VACCINES.forEach(function(v) { if (selectedVaccines.has(v.id)) vaxTags += '<span class="review-tag">' + v.name + ' <span class="review-tag-price">' + (v.price === 0 ? 'No cost' : '$' + v.price + '/person') + '</span></span>'; });
+  ADDONS.forEach(function(a) { if (selectedAddons.has(a.id)) vaxTags += '<span class="review-tag addon">' + a.name + ' <span class="review-tag-price">' + (a.price === 0 ? 'Included' : '+$' + a.price + '/person') + '</span></span>'; });
   if (!vaxTags) vaxTags = '<p style="color:#94A3B8;font-size:14px;margin:0">No vaccines or services selected.</p>';
 
-  /* ── Estimated total ── */
-  const empCount = parseInt(val('employeeCount')) || 0;
-  const vaxPerPerson = VACCINES.filter(v => selectedVaccines.has(v.id)).reduce((s, v) => s + v.price, 0);
-  const addonPerPerson = ADDONS.filter(a => selectedAddons.has(a.id)).reduce((s, a) => s + a.price, 0);
-  const perPerson = vaxPerPerson + addonPerPerson;
-  const totalEst = perPerson * empCount;
+  var empCount = parseInt(val('employeeCount')) || 0;
+  var vaxPP = 0; VACCINES.forEach(function(v) { if (selectedVaccines.has(v.id)) vaxPP += v.price; });
+  var addPP = 0; ADDONS.forEach(function(a) { if (selectedAddons.has(a.id)) addPP += a.price; });
+  var perPerson = vaxPP + addPP;
+  var totalEst = perPerson * empCount;
 
-  let lineItems = '';
-  VACCINES.filter(v => selectedVaccines.has(v.id)).forEach(v => {
-    lineItems += `<div class="est-line"><span>${v.name}</span><span>${v.price === 0 ? 'No cost' : '$' + v.price.toLocaleString()}</span></div>`;
-  });
-  ADDONS.filter(a => selectedAddons.has(a.id)).forEach(a => {
-    lineItems += `<div class="est-line"><span>${a.name}</span><span>${a.price === 0 ? 'Included' : '+$' + a.price.toLocaleString()}</span></div>`;
-  });
+  var lineItems = '';
+  VACCINES.forEach(function(v) { if (selectedVaccines.has(v.id)) lineItems += '<div class="est-line"><span>' + v.name + '</span><span>' + (v.price === 0 ? 'No cost' : '$' + v.price.toLocaleString()) + '</span></div>'; });
+  ADDONS.forEach(function(a) { if (selectedAddons.has(a.id)) lineItems += '<div class="est-line"><span>' + a.name + '</span><span>' + (a.price === 0 ? 'Included' : '+$' + a.price.toLocaleString()) + '</span></div>'; });
 
-  const estimateHtml = empCount > 0 && selectedVaccines.size > 0 ? `
-    <div class="estimate-box">
-      <div class="estimate-header">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
-        <span class="estimate-title">Estimated Total</span>
-      </div>
-      <div class="est-line-items">${lineItems}</div>
-      <div class="est-subtotal">
-        <div class="est-line"><span>Per person</span><span class="est-bold">$${perPerson.toLocaleString()}</span></div>
-        <div class="est-line"><span>Employees</span><span class="est-bold">&times; ${empCount.toLocaleString()}</span></div>
-      </div>
-      <div class="est-total-row">
-        <span>Estimated Total</span>
-        <span class="est-total-value">$${totalEst.toLocaleString()}</span>
-      </div>
-      <p class="est-note">Final pricing confirmed after review. Volume discounts may apply for 100+ employees.</p>
-    </div>
-  ` : '';
+  var estimateHtml = (empCount > 0 && selectedVaccines.size > 0) ?
+    '<div class="estimate-box"><div class="estimate-header"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg><span class="estimate-title">Estimated Total</span></div>' +
+    '<div class="est-line-items">' + lineItems + '</div>' +
+    '<div class="est-subtotal"><div class="est-line"><span>Per person</span><span class="est-bold">$' + perPerson.toLocaleString() + '</span></div><div class="est-line"><span>Employees</span><span class="est-bold">&times; ' + empCount.toLocaleString() + '</span></div></div>' +
+    '<div class="est-total-row"><span>Estimated Total</span><span class="est-total-value">$' + totalEst.toLocaleString() + '</span></div>' +
+    '<p class="est-note">Final pricing confirmed after review. Volume discounts may apply for 100+ employees.</p></div>' : '';
 
-  const multiNote = val('multiLocation') === 'yes' && val('locationCount')
-    ? `<div class="review-item"><span class="review-label">Locations</span><span class="review-value">${val('locationCount')}</span></div>` : '';
+  var multiNote = (val('multiLocation') === 'yes' && val('locationCount')) ? '<div class="review-item"><span class="review-label">Locations</span><span class="review-value">' + val('locationCount') + '</span></div>' : '';
+  var altDateRow = val('altDate') ? '<div class="review-item"><span class="review-label">Alternate Date</span><span class="review-value">' + fmtDate(val('altDate')) + '</span></div>' : '';
 
-  const altDateRow = val('altDate')
-    ? `<div class="review-item"><span class="review-label">Alternate Date</span><span class="review-value">${fmtDate(val('altDate'))}</span></div>` : '';
+  c.innerHTML =
+    '<div class="review-section"><div class="review-section-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22V18h6v4"/><path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01M12 6h.01M12 10h.01M12 14h.01"/></svg><span class="review-section-title">Company</span></div>' +
+    '<div class="review-grid"><div class="review-item"><span class="review-label">Company</span><span class="review-value">' + (val('companyName') || '\u2014') + '</span></div><div class="review-item"><span class="review-label">Industry</span><span class="review-value">' + (val('industry') || '\u2014') + '</span></div><div class="review-item"><span class="review-label">Contact</span><span class="review-value">' + (contact || '\u2014') + '</span></div><div class="review-item"><span class="review-label">Email</span><span class="review-value">' + (val('email') || '\u2014') + '</span></div><div class="review-item"><span class="review-label">Phone</span><span class="review-value">' + (val('phone') || '\u2014') + '</span></div></div></div>' +
 
-  c.innerHTML = `
-    <div class="review-section">
-      <div class="review-section-header">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22V18h6v4"/><path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01M12 6h.01M12 10h.01M12 14h.01"/></svg>
-        <span class="review-section-title">Company</span>
-      </div>
-      <div class="review-grid">
-        <div class="review-item"><span class="review-label">Company</span><span class="review-value">${val('companyName') || '—'}</span></div>
-        <div class="review-item"><span class="review-label">Industry</span><span class="review-value">${val('industry') || '—'}</span></div>
-        <div class="review-item"><span class="review-label">Contact</span><span class="review-value">${contact || '—'}</span></div>
-        <div class="review-item"><span class="review-label">Email</span><span class="review-value">${val('email') || '—'}</span></div>
-        <div class="review-item"><span class="review-label">Phone</span><span class="review-value">${val('phone') || '—'}</span></div>
-      </div>
-    </div>
+    '<div class="review-section"><div class="review-section-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="review-section-title">Event Details</span></div>' +
+    '<div class="review-grid"><div class="review-item"><span class="review-label">Location</span><span class="review-value">' + loc + '</span></div><div class="review-item"><span class="review-label">Preferred Date</span><span class="review-value">' + fmtDate(val('preferredDate')) + '</span></div>' + altDateRow + '<div class="review-item"><span class="review-label">Est. Employees</span><span class="review-value">' + (val('employeeCount') || '\u2014') + '</span></div>' + multiNote + '</div></div>' +
 
-    <div class="review-section">
-      <div class="review-section-header">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span class="review-section-title">Event Details</span>
-      </div>
-      <div class="review-grid">
-        <div class="review-item"><span class="review-label">Location</span><span class="review-value">${loc}</span></div>
-        <div class="review-item"><span class="review-label">Preferred Date</span><span class="review-value">${fmtDate(val('preferredDate'))}</span></div>
-        ${altDateRow}
-        <div class="review-item"><span class="review-label">Est. Employees</span><span class="review-value">${val('employeeCount') || '—'}</span></div>
-        ${multiNote}
-      </div>
-    </div>
+    '<div class="review-section"><div class="review-section-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg><span class="review-section-title">Selected Vaccines &amp; Services</span></div><div class="review-tag-list">' + vaxTags + '</div></div>' +
 
-    <div class="review-section">
-      <div class="review-section-header">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg>
-        <span class="review-section-title">Selected Vaccines &amp; Services</span>
-      </div>
-      <div class="review-tag-list">${vaxTags}</div>
-    </div>
+    estimateHtml +
 
-    ${estimateHtml}
-
-    <div class="disclaimer-box">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      <p class="disclaimer-text">By submitting, you're requesting a custom quote — not placing an order. Our team will confirm pricing, availability, and logistics within one business day. No obligation, no payment required now.</p>
-    </div>
-  `;
+    '<div class="disclaimer-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B4F6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><p class="disclaimer-text">By submitting, you\'re requesting a custom quote \u2014 not placing an order. Our team will confirm pricing, availability, and logistics within one business day. No obligation, no payment required now.</p></div>';
 }
 
-/* ═══════════════════ VALIDATION ═══════════════════ */
 function canProceed() {
-  const val = id => (document.getElementById(id)?.value || '').trim();
+  var val = function(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
   if (currentStep === 0) return val('companyName') && val('industry') && val('contactName') && val('email') && val('phone');
   if (currentStep === 1) return val('address') && val('city') && val('state') && val('zip') && val('preferredDate') && val('employeeCount');
   if (currentStep === 2) return selectedVaccines.size > 0;
   return true;
 }
 
-/* ═══════════════════ NAVIGATION ═══════════════════ */
 function showStep(n) {
-  for (let i = 0; i < 4; i++) document.getElementById('step-' + i).classList.toggle('hidden', i !== n);
+  for (var i = 0; i < 4; i++) document.getElementById('step-' + i).classList.toggle('hidden', i !== n);
   document.getElementById('submittedScreen').classList.add('hidden');
   document.getElementById('navRow').classList.remove('hidden');
-  renderSteps();
-  updateNav();
+  renderSteps(); updateNav();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function updateNav() {
-  const back = document.getElementById('btnBack');
-  const next = document.getElementById('btnNext');
-  const submit = document.getElementById('btnSubmit');
-  back.classList.toggle('hidden', currentStep === 0);
-  next.classList.toggle('hidden', currentStep === 3);
-  submit.classList.toggle('hidden', currentStep !== 3);
-  next.disabled = !canProceed();
+  document.getElementById('btnBack').classList.toggle('hidden', currentStep === 0);
+  document.getElementById('btnNext').classList.toggle('hidden', currentStep === 3);
+  document.getElementById('btnSubmit').classList.toggle('hidden', currentStep !== 3);
+  document.getElementById('btnNext').disabled = !canProceed();
 }
 
 function nextStep() {
@@ -848,7 +727,7 @@ function prevStep() {
 }
 
 function submitForm() {
-  for (let i = 0; i < 4; i++) document.getElementById('step-' + i).classList.add('hidden');
+  for (var i = 0; i < 4; i++) document.getElementById('step-' + i).classList.add('hidden');
   document.getElementById('submittedScreen').classList.remove('hidden');
   document.getElementById('navRow').classList.add('hidden');
   document.getElementById('stepBar').classList.add('hidden');
@@ -858,28 +737,27 @@ function resetForm() {
   currentStep = 0;
   selectedVaccines.clear();
   selectedAddons.clear();
-  ADDONS.filter(a => a.price === 0).forEach(a => selectedAddons.add(a.id));
-  document.querySelectorAll('.field-input, .field-textarea').forEach(el => el.value = '');
-  document.querySelectorAll('.field-select').forEach(el => el.selectedIndex = 0);
+  ADDONS.forEach(function(a) { if (a.price === 0) selectedAddons.add(a.id); });
+  document.querySelectorAll('.field-input, .field-textarea').forEach(function(el) { el.value = ''; });
+  document.querySelectorAll('.field-select').forEach(function(el) { el.selectedIndex = 0; });
   document.getElementById('stepBar').classList.remove('hidden');
+  document.getElementById('locationCountWrap').classList.add('hidden');
+  document.getElementById('multiFeeNotice').classList.add('hidden');
   showStep(0);
 }
 
-/* ═══════════════════ MULTI-LOCATION TOGGLE ═══════════════════ */
 document.getElementById('multiLocation').addEventListener('change', function() {
-  const isMulti = this.value === 'yes';
+  var isMulti = this.value === 'yes';
   document.getElementById('locationCountWrap').classList.toggle('hidden', !isMulti);
   document.getElementById('multiFeeNotice').classList.toggle('hidden', !isMulti);
 });
 
-/* ═══════════════════ LIVE VALIDATION LISTENERS ═══════════════════ */
-document.querySelectorAll('.field-input, .field-select, .field-textarea').forEach(el => {
+document.querySelectorAll('.field-input, .field-select, .field-textarea').forEach(function(el) {
   el.addEventListener('input', updateNav);
   el.addEventListener('change', updateNav);
 });
 
-/* ═══════════════════ INIT ═══════════════════ */
-ADDONS.filter(a => a.price === 0).forEach(a => selectedAddons.add(a.id));
+ADDONS.forEach(function(a) { if (a.price === 0) selectedAddons.add(a.id); });
 renderSteps();
 updateNav();
 </script>
