@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passport Health — Corporate Appointment Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ──────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',sans-serif;background:#f6f5f1;color:#1a1a1a;min-height:100vh;display:flex;flex-direction:column}
+
+/* ─── ANIMATIONS ────────────────────────────── */
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideOutLeft{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-40px)}}
+@keyframes slideOutRight{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── SCROLLBAR ─────────────────────────────── */
+::-webkit-scrollbar{height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+
+/* ─── HEADER ────────────────────────────────── */
+.site-header{background:#fff;border-bottom:1px solid #e8e6e1;padding:0 24px;position:sticky;top:0;z-index:100}
+.header-inner{max-width:960px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo-area{display:flex;align-items:center;gap:12px}
+.logo-mark{font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:#1a1a1a;background:#f0f9ff;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:10px;border:2px solid #30B2EE;letter-spacing:-1px}
+.logo-mark span{color:#30B2EE}
+.logo-title{font-family:'Fraunces',serif;font-size:16px;font-weight:700;letter-spacing:-0.3px}
+.logo-sub{font-size:11px;font-weight:500;color:#888;letter-spacing:0.5px;text-transform:uppercase}
+.header-badge{display:flex;align-items:center;gap:6px;color:#0ea574;background:rgba(14,165,116,0.07);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600}
+
+/* ─── HERO ──────────────────────────────────── */
+.hero{background:linear-gradient(135deg,#0b2a3d 0%,#134e6f 50%,#1a6e94 100%);padding:0 24px;position:relative;overflow:hidden}
+.hero-inner{max-width:960px;margin:0 auto;padding:44px 0 40px;position:relative;z-index:1}
+.hero-copy{max-width:600px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(48,178,238,0.15);color:#7dd3fc;padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:16px;letter-spacing:0.3px}
+.hero-title{font-family:'Fraunces',serif;font-size:clamp(26px,4vw,38px);font-weight:700;color:#fff;line-height:1.15;letter-spacing:-0.5px;margin-bottom:14px}
+.hero-desc{color:rgba(255,255,255,0.72);font-size:15px;line-height:1.6;max-width:520px}
+
+/* ─── PROGRESS ──────────────────────────────── */
+.progress-wrap{background:#fff;border-bottom:1px solid #e8e6e1;padding:0 24px;overflow-x:auto}
+.progress-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:center;padding:18px 0;gap:0;min-width:fit-content}
+.step-btn{display:flex;align-items:center;gap:8px;background:none;border:none;padding:6px 10px;border-radius:8px;cursor:default;font-family:'DM Sans',sans-serif}
+.step-btn.clickable{cursor:pointer}
+.step-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#f0ede8;color:#999;transition:all 0.3s;flex-shrink:0}
+.step-circle.active{background:#30B2EE;color:#fff;box-shadow:0 2px 12px rgba(48,178,238,0.35)}
+.step-circle.done{background:#0ea574;color:#fff}
+.step-label{font-size:13px;font-weight:600;color:#666;white-space:nowrap}
+.step-line{width:32px;height:2px;background:#e0ddd6;border-radius:1px;margin:0 4px;transition:background 0.3s}
+.step-line.done{background:#0ea574}
+
+/* ─── CONTENT CARD ──────────────────────────── */
+.content-outer{flex:1;padding:28px 24px 100px;max-width:960px;width:100%;margin:0 auto}
+.content-card{background:#fff;border-radius:16px;padding:clamp(24px,4vw,40px);border:1px solid #e8e6e1;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.content-card.anim-in-right{animation:slideInRight 0.32s ease forwards}
+.content-card.anim-in-left{animation:slideInLeft 0.32s ease forwards}
+.content-card.anim-out-left{animation:slideOutLeft 0.28s ease forwards}
+.content-card.anim-out-right{animation:slideOutRight 0.28s ease forwards}
+
+/* ─── STEP HEADERS ──────────────────────────── */
+.step-header{margin-bottom:28px}
+.step-title{font-family:'Fraunces',serif;font-size:24px;font-weight:700;letter-spacing:-0.3px;margin-bottom:6px}
+.step-desc{font-size:14px;color:#777;line-height:1.55}
+
+/* ─── FORM ──────────────────────────────────── */
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.field-label{display:block;font-size:13px;font-weight:600;color:#555;margin-bottom:6px;letter-spacing:0.2px}
+.field-label.error{color:#e44}
+.field-span-2{grid-column:1/-1}
+.input,.select-field{width:100%;padding:11px 14px;font-size:15px;border:1.5px solid #ddd8d0;border-radius:10px;background:#faf9f7;font-family:'DM Sans',sans-serif;color:#1a1a1a;transition:border-color 0.2s,box-shadow 0.2s;outline:none}
+.select-field{cursor:pointer;appearance:auto}
+.input:focus,.select-field:focus{border-color:#30B2EE !important;box-shadow:0 0 0 3px rgba(48,178,238,0.15) !important}
+.field-error .input,.field-error .select-field{outline:2px solid #e44;border-radius:10px}
+.err-dot{display:inline-flex;font-size:11px;font-weight:700;color:#e44;margin-left:6px;text-transform:none;letter-spacing:0}
+
+/* ─── INFO BOX ──────────────────────────────── */
+.info-box{display:flex;gap:12px;align-items:flex-start;margin-top:28px;padding:16px 18px;border-radius:12px;background:rgba(48,178,238,0.06);border:1px solid rgba(48,178,238,0.15);font-size:14px;color:#1a1a1a;line-height:1.5}
+.info-box.green{background:rgba(14,165,116,0.07);border-color:rgba(14,165,116,0.2)}
+.info-box strong{display:block;margin-bottom:2px}
+.info-box .sub{opacity:0.8;font-size:13px}
+
+/* ─── SECTION LABEL ─────────────────────────── */
+.section-label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#555;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:14px}
+
+/* ─── SERVICE CARDS ─────────────────────────── */
+.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.service-card{text-align:left;padding:16px 18px;border:1.5px solid #e8e6e1;border-radius:12px;background:#faf9f7;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.service-card:hover{border-color:#c0c0c0}
+.service-card.active{border-color:#30B2EE;background:rgba(48,178,238,0.05);box-shadow:0 0 0 3px rgba(48,178,238,0.12)}
+.service-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.service-name{font-weight:600;font-size:14px;color:#1a1a1a}
+.service-check{color:#30B2EE;flex-shrink:0;display:none}
+.service-card.active .service-check{display:block}
+.service-meta{display:flex;align-items:center;gap:4px;font-size:12px;color:#888;margin-bottom:8px}
+.service-meta .sep{margin:0 6px;opacity:0.3}
+.service-desc{font-size:13px;color:#777;line-height:1.45;margin:0}
+
+/* ─── LOCATION PREVIEW ──────────────────────── */
+.loc-preview{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:14px 16px;border-radius:10px;background:#f0f9ff;border:1px solid rgba(48,178,238,0.2);font-size:14px;color:#134e6f}
+.loc-preview strong{display:block}
+.loc-preview .addr{font-size:13px;opacity:0.65;margin-top:2px}
+
+/* ─── DATE CHIPS ────────────────────────────── */
+.date-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}
+.date-chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 16px;border:1.5px solid #e8e6e1;border-radius:12px;background:#faf9f7;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;min-width:64px;flex-shrink:0}
+.date-chip:hover{border-color:#c0c0c0}
+.date-chip.active{border-color:#30B2EE;background:#30B2EE;color:#fff;box-shadow:0 2px 12px rgba(48,178,238,0.3)}
+.date-day{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.date-num{font-size:22px;font-weight:700;font-family:'Fraunces',serif;line-height:1}
+.date-mo{font-size:11px;font-weight:500;opacity:0.7}
+
+/* ─── TIME CHIPS ────────────────────────────── */
+.time-grid{display:flex;flex-wrap:wrap;gap:8px}
+.time-chip{padding:10px 20px;border:1.5px solid #e8e6e1;border-radius:10px;background:#faf9f7;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;transition:all 0.2s}
+.time-chip:hover:not(.disabled){border-color:#c0c0c0}
+.time-chip.active{border-color:#30B2EE;background:#30B2EE;color:#fff;box-shadow:0 2px 12px rgba(48,178,238,0.3)}
+.time-chip.disabled{opacity:0.35;cursor:not-allowed;text-decoration:line-through}
+
+/* ─── REVIEW ────────────────────────────────── */
+.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px}
+.review-section{padding:16px 18px;border:1.5px solid #e8e6e1;border-radius:12px;background:#faf9f7}
+.review-section-head{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#30B2EE;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #ece9e3}
+.review-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;font-size:13px}
+.review-label{color:#888;font-weight:500}
+.review-value{font-weight:600;color:#1a1a1a;text-align:right;max-width:60%;word-break:break-word}
+
+/* ─── BUTTONS ───────────────────────────────── */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#30B2EE;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(48,178,238,0.25)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-primary.green{background:#0ea574;box-shadow:0 2px 8px rgba(14,165,116,0.25)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:transparent;color:#1a1a1a;border:1.5px solid #ddd8d0;border-radius:10px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.2s}
+.btn-secondary:hover{border-color:#bbb}
+.btn-back{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:transparent;color:#777;border:none;font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer}
+.btn-back:hover{color:#444}
+
+/* ─── FOOTER NAV ────────────────────────────── */
+.footer-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-top:1px solid #e8e6e1;padding:0 24px;z-index:100}
+.footer-nav-inner{max-width:960px;margin:0 auto;height:68px;display:flex;align-items:center;justify-content:space-between}
+
+/* ─── FOOTER ────────────────────────────────── */
+.site-footer{text-align:center;padding:20px 24px 90px;font-size:13px;color:#999;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.site-footer strong{color:#30B2EE}
+
+/* ─── SUCCESS ───────────────────────────────── */
+.success-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px}
+.success-card{background:#fff;border-radius:20px;padding:48px 40px;border:1px solid #e8e6e1;text-align:center;max-width:520px;width:100%;animation:fadeUp 0.5s ease}
+.success-icon{margin-bottom:20px}
+.success-title{font-family:'Fraunces',serif;font-size:28px;font-weight:700;margin-bottom:8px;letter-spacing:-0.3px}
+.success-sub{font-size:15px;color:#777;margin-bottom:28px}
+.success-detail{text-align:left;background:#faf9f7;border-radius:12px;padding:18px 20px;border:1px solid #e8e6e1}
+.success-row{display:flex;justify-content:space-between;padding:7px 0;font-size:14px;border-bottom:1px solid #f0ede8}
+.success-row:last-child{border-bottom:none}
+.success-label{color:#888;font-weight:500;font-size:13px}
+.success-btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+
+/* ─── HIDDEN UTIL ───────────────────────────── */
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SVG ICON TEMPLATES (hidden, referenced via innerHTML)
+     ═══════════════════════════════════════════════════════════ -->
+<div id="icon-templates" style="display:none">
+  <svg id="ico-building" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><path d="M9 22v-4h6v4"/></svg>
+  <svg id="ico-user" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+  <svg id="ico-stethoscope" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+  <svg id="ico-calendar" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+  <svg id="ico-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <svg id="ico-check-lg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#0ea574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <svg id="ico-map" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+  <svg id="ico-clock" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  <svg id="ico-chevright" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  <svg id="ico-chevleft" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  <svg id="ico-shield" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+  <svg id="ico-mail" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+  <svg id="ico-users" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+  <svg id="ico-sparkle" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN APP SHELL
+     ═══════════════════════════════════════════════════════════ -->
+<div id="app"></div>
+
+<script>
+// ─── DATA ──────────────────────────────────────────────────
+const SERVICES = [
+  { id:"immigration", label:"Immigration Medical Exam (I-693)", duration:"60 min", price:"$350", desc:"USCIS-required civil surgeon examination for Form I-693, including TB testing and vaccination review." },
+  { id:"travel", label:"Travel Health Consultation", duration:"30 min", price:"$75+", desc:"Pre-travel vaccinations and health advice for international destinations." },
+  { id:"dot", label:"DOT/CDL Physical Exam", duration:"45 min", price:"$125", desc:"Federal DOT-certified physical examination for commercial drivers." },
+  { id:"preemploy", label:"Pre-Employment Physical", duration:"30 min", price:"$100", desc:"Standard occupational health screening for new hires." },
+];
+
+const LOCATIONS = {
+  CA:[
+    {id:"la-west",name:"Los Angeles — West Hollywood",addr:"8383 Wilshire Blvd, Ste 540, Beverly Hills, CA 90211"},
+    {id:"sf-fin",name:"San Francisco — Financial District",addr:"100 Pine St, Ste 1210, San Francisco, CA 94111"},
+    {id:"sd-utc",name:"San Diego — UTC",addr:"4660 La Jolla Village Dr, Ste 100, San Diego, CA 92122"},
+  ],
+  NY:[
+    {id:"nyc-mid",name:"New York — Midtown",addr:"275 Madison Ave, Ste 1714, New York, NY 10016"},
+    {id:"nyc-bk",name:"Brooklyn — Downtown",addr:"26 Court St, Ste 2211, Brooklyn, NY 11242"},
+  ],
+  TX:[
+    {id:"hou-gal",name:"Houston — Galleria",addr:"2929 Post Oak Blvd, Ste 200, Houston, TX 77056"},
+    {id:"dal-uptn",name:"Dallas — Uptown",addr:"3500 Maple Ave, Ste 400, Dallas, TX 75219"},
+  ],
+  FL:[
+    {id:"mia-brkl",name:"Miami — Brickell",addr:"1395 Brickell Ave, Ste 800, Miami, FL 33131"},
+    {id:"orl-sand",name:"Orlando — Sand Lake",addr:"7380 Sand Lake Rd, Ste 500, Orlando, FL 32819"},
+  ],
+  IL:[{id:"chi-loop",name:"Chicago — The Loop",addr:"30 N Michigan Ave, Ste 807, Chicago, IL 60602"}],
+  WA:[{id:"sea-bell",name:"Seattle — Belltown",addr:"2301 5th Ave, Ste 200, Seattle, WA 98121"}],
+  DC:[{id:"dc-dupnt",name:"Washington — Dupont Circle",addr:"1350 Connecticut Ave NW, Ste 300, Washington, DC 20036"}],
+};
+
+const STATES = Object.keys(LOCATIONS).sort();
+
+const ROLES = ["HR / People Ops","Office Manager","Executive Assistant","Immigration Coordinator","Travel Manager","Other"];
+const OTHER_ROLES = ["Recruiter","Benefits Coordinator","Relocation Specialist","Legal / Compliance","Administrative Assistant","Department Manager","Operations Coordinator","Finance / Accounting"];
+
+const TIME_SLOTS = [
+  {time:"8:30 AM",avail:true},{time:"9:00 AM",avail:true},{time:"9:30 AM",avail:false},{time:"10:00 AM",avail:true},
+  {time:"10:30 AM",avail:true},{time:"11:00 AM",avail:true},{time:"11:30 AM",avail:false},{time:"1:00 PM",avail:true},
+  {time:"1:30 PM",avail:true},{time:"2:00 PM",avail:true},{time:"2:30 PM",avail:false},{time:"3:00 PM",avail:true},
+  {time:"3:30 PM",avail:true},{time:"4:00 PM",avail:true},
+];
+
+const DAY_NAMES = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+const STEP_META = [
+  {key:"rep",label:"Your Info",icon:"ico-building"},
+  {key:"employee",label:"Employee",icon:"ico-user"},
+  {key:"service",label:"Service",icon:"ico-stethoscope"},
+  {key:"datetime",label:"Schedule",icon:"ico-calendar"},
+  {key:"review",label:"Confirm",icon:"ico-check"},
+];
+
+function generateDates(){
+  const dates=[];
+  const today=new Date(2026,2,16);
+  for(let i=2;i<=21;i++){const d=new Date(today);d.setDate(today.getDate()+i);dates.push(d)}
+  return dates;
+}
+const DATES = generateDates();
+
+// ─── STATE ─────────────────────────────────────────────────
+let state = {
+  step:0, animDir:"forward", isAnimating:false,
+  rep:{company:"",name:"",email:"",phone:"",role:"HR / People Ops",otherRole:""},
+  employee:{firstName:"",lastName:"",email:"",phone:"",dob:""},
+  service:"", usState:"", location:"", date:null, time:"",
+  submitted:false, errors:{}
+};
+
+function icon(id){ return document.getElementById(id)?.outerHTML || ""; }
+
+// ─── RENDER ────────────────────────────────────────────────
+function render(){
+  const s = state;
+  if(s.submitted){ renderSuccess(); return; }
+
+  const locOpts = s.usState ? LOCATIONS[s.usState]||[] : [];
+  const selLoc = locOpts.find(l=>l.id===s.location);
+
+  document.getElementById("app").innerHTML = `
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-area">
+          <div class="logo-mark">P<span>H</span></div>
+          <div><div class="logo-title">Passport Health</div><div class="logo-sub">Corporate Appointment Portal</div></div>
+        </div>
+        <div class="header-badge">${icon("ico-shield")}<span>HIPAA Compliant</span></div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">${icon("ico-users")}<span>Admin Professional Booking</span></div>
+          <h1 class="hero-title">Schedule appointments<br>on behalf of your team</h1>
+          <p class="hero-desc">Book immigration physicals, travel consultations, and occupational health services for employees — all from one streamlined portal.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-wrap">
+      <div class="progress-inner">
+        ${STEP_META.map((sm,i) => `
+          <div style="display:flex;align-items:center">
+            <button class="step-btn ${i<s.step?'clickable':''}" onclick="${i<s.step?`goTo(${i})`:''}">
+              <div class="step-circle ${i===s.step?'active':''} ${i<s.step?'done':''}">
+                ${i<s.step ? icon("ico-check") : icon(sm.icon)}
+              </div>
+              <span class="step-label">${sm.label}</span>
+            </button>
+            ${i<STEP_META.length-1 ? `<div class="step-line ${i<s.step?'done':''}"></div>` : ''}
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-outer">
+      <div class="content-card anim-in-${s.animDir==='forward'?'right':'left'}" id="content-card">
+        ${renderStep(s.step)}
+      </div>
+    </div>
+
+    <!-- FOOTER NAV -->
+    <div class="footer-nav">
+      <div class="footer-nav-inner">
+        ${s.step>0 ? `<button class="btn-back" onclick="goBack()">${icon("ico-chevleft")} Back</button>` : '<div></div>'}
+        ${s.step<4
+          ? `<button class="btn-primary" onclick="goNext()">Continue ${icon("ico-chevright")}</button>`
+          : `<button class="btn-primary green" onclick="handleSubmit()">${icon("ico-check")} Confirm Appointment</button>`
+        }
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <span>Need help? Call <strong>1-888-986-8868</strong></span>
+      <span style="opacity:0.5">·</span>
+      <span>© 2026 Passport Health USA</span>
+    </footer>
+  `;
+}
+
+// ─── STEP RENDERERS ────────────────────────────────────────
+function renderStep(step){
+  switch(step){
+    case 0: return renderStepRep();
+    case 1: return renderStepEmployee();
+    case 2: return renderStepService();
+    case 3: return renderStepDateTime();
+    case 4: return renderStepReview();
+  }
+}
+
+function errFor(key){ return state.errors[key] ? 'field-error' : ''; }
+function errDot(key){ return state.errors[key] ? '<span class="err-dot">Required</span>' : ''; }
+
+function renderStepRep(){
+  const r = state.rep;
+  return `
+    <div class="step-header">
+      <h2 class="step-title">Company & Representative Details</h2>
+      <p class="step-desc">Tell us about yourself and your organization. As the booking representative, you'll receive all confirmations and can manage this appointment.</p>
+    </div>
+    <div class="form-grid">
+      <div class="field-span-2 ${errFor('company')}">
+        <label class="field-label ${state.errors.company?'error':''}">Company / Organization * ${errDot('company')}</label>
+        <input class="input" placeholder="e.g. Acme Corporation" value="${esc(r.company)}" oninput="updateRep('company',this.value)">
+      </div>
+      <div class="${errFor('repName')}">
+        <label class="field-label ${state.errors.repName?'error':''}">Booking Assistant's Name * ${errDot('repName')}</label>
+        <input class="input" placeholder="Jane Smith" value="${esc(r.name)}" oninput="updateRep('name',this.value)">
+      </div>
+      <div>
+        <label class="field-label">Booking Assistant's Role</label>
+        <select class="select-field" onchange="updateRep('role',this.value);if(this.value!=='Other')updateRep('otherRole','');render()">
+          ${ROLES.map(ro=>`<option ${r.role===ro?'selected':''}>${ro}</option>`).join("")}
+        </select>
+      </div>
+      ${r.role==="Other" ? `
+      <div class="${errFor('otherRole')}">
+        <label class="field-label ${state.errors.otherRole?'error':''}">Please specify your role * ${errDot('otherRole')}</label>
+        <select class="select-field" onchange="updateRep('otherRole',this.value)">
+          <option value="">Select a role…</option>
+          ${OTHER_ROLES.map(ro=>`<option ${r.otherRole===ro?'selected':''}>${ro}</option>`).join("")}
+        </select>
+      </div>` : ''}
+      <div class="${errFor('repEmail')}">
+        <label class="field-label ${state.errors.repEmail?'error':''}">Booking Assistant's Email * ${errDot('repEmail')}</label>
+        <input class="input" type="email" placeholder="jane@company.com" value="${esc(r.email)}" oninput="updateRep('email',this.value)">
+      </div>
+      <div class="${errFor('repPhone')}">
+        <label class="field-label ${state.errors.repPhone?'error':''}">Booking Assistant's Phone * ${errDot('repPhone')}</label>
+        <input class="input" type="tel" placeholder="(555) 123-4567" value="${esc(r.phone)}" oninput="updateRep('phone',this.value)">
+      </div>
+    </div>
+    <div class="info-box">
+      ${icon("ico-sparkle")}
+      <div><strong>Booking for multiple employees?</strong><span class="sub">After confirming this appointment, you can quickly book additional employees at the same location and time slot with pre-filled company details.</span></div>
+    </div>
+  `;
+}
+
+function renderStepEmployee(){
+  const e = state.employee;
+  return `
+    <div class="step-header">
+      <h2 class="step-title">Employee Information</h2>
+      <p class="step-desc">Provide details for the employee who will attend the appointment. They'll receive a confirmation email with preparation instructions.</p>
+    </div>
+    <div class="form-grid">
+      <div class="${errFor('firstName')}">
+        <label class="field-label ${state.errors.firstName?'error':''}">First Name * ${errDot('firstName')}</label>
+        <input class="input" placeholder="John" value="${esc(e.firstName)}" oninput="updateEmp('firstName',this.value)">
+      </div>
+      <div class="${errFor('lastName')}">
+        <label class="field-label ${state.errors.lastName?'error':''}">Last Name * ${errDot('lastName')}</label>
+        <input class="input" placeholder="Doe" value="${esc(e.lastName)}" oninput="updateEmp('lastName',this.value)">
+      </div>
+      <div class="${errFor('empEmail')}">
+        <label class="field-label ${state.errors.empEmail?'error':''}">Employee Email * ${errDot('empEmail')}</label>
+        <input class="input" type="email" placeholder="john.doe@company.com" value="${esc(e.email)}" oninput="updateEmp('email',this.value)">
+      </div>
+      <div>
+        <label class="field-label">Employee Phone (optional)</label>
+        <input class="input" type="tel" placeholder="(555) 987-6543" value="${esc(e.phone)}" oninput="updateEmp('phone',this.value)">
+      </div>
+      <div class="field-span-2">
+        <label class="field-label">Date of Birth (optional)</label>
+        <input class="input" type="date" value="${e.dob}" oninput="updateEmp('dob',this.value)">
+      </div>
+    </div>
+    <div class="info-box">
+      ${icon("ico-mail")}
+      <div><strong>What the employee receives</strong><span class="sub">A confirmation email with date, time, location, and a checklist of what to bring (government-issued photo ID, vaccination records, I-94 if applicable).</span></div>
+    </div>
+  `;
+}
+
+function renderStepService(){
+  const locOpts = state.usState ? LOCATIONS[state.usState]||[] : [];
+  const selLoc = locOpts.find(l=>l.id===state.location);
+  return `
+    <div class="step-header">
+      <h2 class="step-title">Service & Location</h2>
+      <p class="step-desc">Select the type of appointment and a convenient Passport Health clinic location.</p>
+    </div>
+    <div class="section-label">Appointment Type ${errDot('service')}</div>
+    <div class="service-grid">
+      ${SERVICES.map(sv=>`
+        <button class="service-card ${state.service===sv.id?'active':''}" onclick="state.service='${sv.id}';render()">
+          <div class="service-top">
+            <span class="service-name">${sv.label}</span>
+            <span class="service-check">${icon("ico-check")}</span>
+          </div>
+          <div class="service-meta">${icon("ico-clock")} ${sv.duration}<span class="sep">·</span>${sv.price}</div>
+          <p class="service-desc">${sv.desc}</p>
+        </button>
+      `).join("")}
+    </div>
+    <div class="form-grid" style="margin-top:28px">
+      <div>
+        <label class="section-label">State ${errDot('usState')}</label>
+        <select class="select-field" onchange="state.usState=this.value;state.location='';render()">
+          <option value="">Select state…</option>
+          ${STATES.map(st=>`<option ${state.usState===st?'selected':''}>${st}</option>`).join("")}
+        </select>
+      </div>
+      <div>
+        <label class="section-label">Location ${errDot('location')}</label>
+        <select class="select-field" ${!state.usState?'disabled':''} onchange="state.location=this.value;render()">
+          <option value="">${state.usState?'Select clinic…':'Select a state first'}</option>
+          ${locOpts.map(l=>`<option value="${l.id}" ${state.location===l.id?'selected':''}>${l.name}</option>`).join("")}
+        </select>
+      </div>
+    </div>
+    ${selLoc ? `
+      <div class="loc-preview">
+        ${icon("ico-map")}
+        <div><strong>${selLoc.name}</strong><div class="addr">${selLoc.addr}</div></div>
+      </div>
+    ` : ''}
+  `;
+}
+
+function renderStepDateTime(){
+  return `
+    <div class="step-header">
+      <h2 class="step-title">Pick a Date & Time</h2>
+      <p class="step-desc">Choose an available appointment slot. Same-day and next-day availability at most locations.</p>
+    </div>
+    <div class="section-label">Select Date ${errDot('date')}</div>
+    <div class="date-scroll">
+      ${DATES.map((d,i)=>{
+        if(d.getDay()===0||d.getDay()===6) return '';
+        const sel = state.date && d.toDateString()===state.date.toDateString();
+        return `<button class="date-chip ${sel?'active':''}" onclick="selectDate(${i})">
+          <span class="date-day">${DAY_NAMES[d.getDay()]}</span>
+          <span class="date-num">${d.getDate()}</span>
+          <span class="date-mo">${MONTH_NAMES[d.getMonth()]}</span>
+        </button>`;
+      }).join("")}
+    </div>
+    ${state.date ? `
+      <div class="section-label" style="margin-top:28px">Available Times ${errDot('time')}</div>
+      <div class="time-grid">
+        ${TIME_SLOTS.map(sl=>`
+          <button class="time-chip ${state.time===sl.time?'active':''} ${!sl.avail?'disabled':''}" ${!sl.avail?'disabled':''} onclick="${sl.avail?`selectTime('${sl.time}')`:''}">${sl.time}</button>
+        `).join("")}
+      </div>
+    ` : ''}
+  `;
+}
+
+function renderStepReview(){
+  const r=state.rep, e=state.employee;
+  const sv=SERVICES.find(s=>s.id===state.service);
+  const locOpts=state.usState?LOCATIONS[state.usState]||[]:[];
+  const loc=locOpts.find(l=>l.id===state.location);
+  const d=state.date;
+  const roleDisplay = r.role==="Other" ? r.otherRole : r.role;
+  return `
+    <div class="step-header">
+      <h2 class="step-title">Review & Confirm</h2>
+      <p class="step-desc">Please verify all details before submitting. Confirmation emails will be sent to both you and the employee.</p>
+    </div>
+    <div class="review-grid">
+      <div class="review-section">
+        <div class="review-section-head">${icon("ico-building")}<span>Booking Assistant</span></div>
+        <div class="review-row"><span class="review-label">Name</span><span class="review-value">${esc(r.name)}</span></div>
+        <div class="review-row"><span class="review-label">Company</span><span class="review-value">${esc(r.company)}</span></div>
+        <div class="review-row"><span class="review-label">Role</span><span class="review-value">${esc(roleDisplay)}</span></div>
+        <div class="review-row"><span class="review-label">Email</span><span class="review-value">${esc(r.email)}</span></div>
+        <div class="review-row"><span class="review-label">Phone</span><span class="review-value">${esc(r.phone)}</span></div>
+      </div>
+      <div class="review-section">
+        <div class="review-section-head">${icon("ico-user")}<span>Employee</span></div>
+        <div class="review-row"><span class="review-label">Name</span><span class="review-value">${esc(e.firstName)} ${esc(e.lastName)}</span></div>
+        <div class="review-row"><span class="review-label">Email</span><span class="review-value">${esc(e.email)}</span></div>
+        ${e.phone?`<div class="review-row"><span class="review-label">Phone</span><span class="review-value">${esc(e.phone)}</span></div>`:''}
+        ${e.dob?`<div class="review-row"><span class="review-label">DOB</span><span class="review-value">${e.dob}</span></div>`:''}
+      </div>
+      <div class="review-section">
+        <div class="review-section-head">${icon("ico-stethoscope")}<span>Service</span></div>
+        <div class="review-row"><span class="review-label">Type</span><span class="review-value">${sv?sv.label:''}</span></div>
+        <div class="review-row"><span class="review-label">Duration</span><span class="review-value">${sv?sv.duration:''}</span></div>
+        <div class="review-row"><span class="review-label">Est. Cost</span><span class="review-value">${sv?sv.price:''}</span></div>
+      </div>
+      <div class="review-section">
+        <div class="review-section-head">${icon("ico-calendar")}<span>Schedule</span></div>
+        <div class="review-row"><span class="review-label">Location</span><span class="review-value">${loc?loc.name:''}</span></div>
+        <div class="review-row"><span class="review-label">Address</span><span class="review-value">${loc?loc.addr:''}</span></div>
+        <div class="review-row"><span class="review-label">Date</span><span class="review-value">${d?`${DAY_NAMES[d.getDay()]}, ${MONTH_NAMES[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`:''}</span></div>
+        <div class="review-row"><span class="review-label">Time</span><span class="review-value">${state.time}</span></div>
+      </div>
+    </div>
+    <div class="info-box green">
+      ${icon("ico-shield")}
+      <div><strong>Cancellation Policy</strong><span class="sub">Free cancellation or rescheduling up to 24 hours before the appointment. Contact us at 1-888-986-8868 for changes.</span></div>
+    </div>
+  `;
+}
+
+function renderSuccess(){
+  const r=state.rep, e=state.employee;
+  const sv=SERVICES.find(s=>s.id===state.service);
+  const locOpts=state.usState?LOCATIONS[state.usState]||[]:[];
+  const loc=locOpts.find(l=>l.id===state.location);
+  const d=state.date;
+
+  document.getElementById("app").innerHTML = `
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-area">
+          <div class="logo-mark">P<span>H</span></div>
+          <div><div class="logo-title">Passport Health</div><div class="logo-sub">Corporate Appointment Portal</div></div>
+        </div>
+        <div class="header-badge">${icon("ico-shield")}<span>HIPAA Compliant</span></div>
+      </div>
+    </header>
+    <div class="success-wrap">
+      <div class="success-card">
+        <div class="success-icon">${icon("ico-check-lg")}</div>
+        <h2 class="success-title">Appointment Confirmed</h2>
+        <p class="success-sub">A confirmation has been sent to both you and the employee.</p>
+        <div class="success-detail">
+          <div class="success-row"><span class="success-label">Employee</span><span>${esc(e.firstName)} ${esc(e.lastName)}</span></div>
+          <div class="success-row"><span class="success-label">Service</span><span>${sv?sv.label:''}</span></div>
+          <div class="success-row"><span class="success-label">Location</span><span>${loc?loc.name:''}</span></div>
+          <div class="success-row"><span class="success-label">Date & Time</span><span>${d?`${DAY_NAMES[d.getDay()]}, ${MONTH_NAMES[d.getMonth()]} ${d.getDate()}`:''} at ${state.time}</span></div>
+          <div class="success-row"><span class="success-label">Booked by</span><span>${esc(r.name)}, ${esc(r.company)}</span></div>
+        </div>
+        <div class="success-btns">
+          <button class="btn-primary" onclick="bookAnother()">Book Another Employee</button>
+          <button class="btn-secondary" onclick="startOver()">Start Over</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ─── HELPERS ───────────────────────────────────────────────
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function updateRep(key,val){ state.rep[key]=val; }
+function updateEmp(key,val){ state.employee[key]=val; }
+
+function selectDate(i){ state.date=DATES[i]; state.time=''; render(); }
+function selectTime(t){ state.time=t; render(); }
+
+function validate(){
+  const e={}, s=state;
+  if(s.step===0){
+    if(!s.rep.company.trim()) e.company=true;
+    if(!s.rep.name.trim()) e.repName=true;
+    if(!s.rep.email.trim()||!s.rep.email.includes('@')) e.repEmail=true;
+    if(!s.rep.phone.trim()) e.repPhone=true;
+    if(s.rep.role==='Other'&&!s.rep.otherRole) e.otherRole=true;
+  }
+  if(s.step===1){
+    if(!s.employee.firstName.trim()) e.firstName=true;
+    if(!s.employee.lastName.trim()) e.lastName=true;
+    if(!s.employee.email.trim()||!s.employee.email.includes('@')) e.empEmail=true;
+  }
+  if(s.step===2){
+    if(!s.service) e.service=true;
+    if(!s.usState) e.usState=true;
+    if(!s.location) e.location=true;
+  }
+  if(s.step===3){
+    if(!s.date) e.date=true;
+    if(!s.time) e.time=true;
+  }
+  return e;
+}
+
+function animateTransition(newStep){
+  if(state.isAnimating) return;
+  const dir = newStep > state.step ? 'forward' : 'back';
+  state.animDir = dir;
+  state.isAnimating = true;
+  const card = document.getElementById('content-card');
+  if(card){
+    card.className = `content-card anim-out-${dir==='forward'?'left':'right'}`;
+  }
+  setTimeout(()=>{
+    state.step = newStep;
+    state.isAnimating = false;
+    render();
+  }, 280);
+}
+
+function goTo(n){ if(n!==state.step) animateTransition(n); }
+function goNext(){
+  const e=validate();
+  if(Object.keys(e).length){ state.errors=e; render(); return; }
+  state.errors={};
+  if(state.step<4) animateTransition(state.step+1);
+}
+function goBack(){ if(state.step>0) animateTransition(state.step-1); }
+
+function handleSubmit(){ state.submitted=true; render(); }
+
+function bookAnother(){
+  state.submitted=false; state.step=1;
+  state.employee={firstName:'',lastName:'',email:'',phone:'',dob:''};
+  state.date=null; state.time=''; state.errors={};
+  render();
+}
+function startOver(){
+  state={step:0,animDir:'forward',isAnimating:false,
+    rep:{company:'',name:'',email:'',phone:'',role:'HR / People Ops',otherRole:''},
+    employee:{firstName:'',lastName:'',email:'',phone:'',dob:''},
+    service:'',usState:'',location:'',date:null,time:'',submitted:false,errors:{}
+  };
+  render();
+}
+
+// ─── INIT ──────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
